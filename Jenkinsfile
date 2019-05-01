@@ -5,6 +5,7 @@ podTemplate(
         containerTemplate(name: 'docker-build', image: 'docker:18.09.5', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'kubectl-deploy', image: 'slalomdojo/env:cicd', ttyEnabled: true, command: 'cat')
     ],
+    serviceAccount: jenkins-team1,
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
     ]
