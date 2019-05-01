@@ -3,9 +3,9 @@ FROM node:carbon-jessie
 WORKDIR /code
 USER node
 
-COPY --chown=node:node package*.json ./
+COPY package*.json ./
 RUN npm install && npm test
 
-COPY --chown=node:node . .
+COPY . .
 
 ENTRYPOINT ["node", "/code/index.js"]
