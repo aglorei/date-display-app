@@ -9,7 +9,7 @@ podTemplate(label: label, containers: [
                     checkout scm
                     sh '''
                         #!/bin/sh
-                        ls -alhHF
+                        printenv
                     '''
                 }
             }
