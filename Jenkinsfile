@@ -9,7 +9,7 @@ podTemplate(label: label, containers: [
                     checkout scm
                     sh '''
                         #!/bin/sh
-                        printenv
+                        docker build -t date-display-app:latest .
                     '''
                 }
             }
