@@ -1,6 +1,6 @@
 label = "tien-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
-    containerTemplate(name: 'docker-build', image: 'docker:latest ', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'docker-build', image: 'docker:latest', ttyEnabled: true, command: 'cat'),
   ]) {
     node(label) {
         stage('Build') {
