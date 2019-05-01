@@ -7,7 +7,10 @@ podTemplate(label: label, containers: [
             container('docker-build') {
                 stage('Build and Test') {
                     checkout scm
-                    sh 'docker info'
+                    sh '''
+                        #!/bin/sh
+                        ls -alhHF
+                    '''
                 }
             }
         }
