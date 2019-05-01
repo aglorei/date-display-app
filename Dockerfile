@@ -3,8 +3,9 @@ FROM node:carbon-jessie
 WORKDIR /code
 
 COPY package*.json ./
-RUN npm install && npm test
+RUN npm install
 
 COPY . .
+RUN npm test
 
 ENTRYPOINT ["node", "/code/index.js"]
