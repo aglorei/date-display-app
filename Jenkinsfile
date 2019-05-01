@@ -1,7 +1,13 @@
 label = "tien-${UUID.randomUUID().toString()}"
-podTemplate(label: label, containers: [
-    containerTemplate(name: 'docker-build', image: 'docker:latest', ttyEnabled: true, command: 'cat'),
-  ]) {
+podTemplate(
+    label: label,
+    containers: [
+        containerTemplate(name: 'docker-build', image: 'docker:latest', ttyEnabled: true, command: 'cat')
+    ],
+    volumes: [
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+    ]
+){
     node(label) {
         stage('Build') {
             container('docker-build') {
