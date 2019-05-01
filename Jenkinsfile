@@ -1,18 +1,15 @@
-pipeline {
-  agent {
-    kubernetes {
-      label 'tien-date-display-app'
-      defaultContainer 'jnlp'
-      yamlFile 'pipeline-pod.yml'
-    }
-  }
-  stages {
-    stage('Run build') {
-      steps {
-        container('docker-build') {
-          sh 'docker info'
+label = "mypod-${UUID.randomUUID().toString()}"
+podTemplate(label: label, containers: [
+    containerTemplate(name: 'docker-build', image: 'docker:latest ', ttyEnabled: true, command: 'cat'),
+  ]) {
+    node(label) {
+        stage('Build') {
+            container('docker-build') {
+                stage('Build and Test') {
+                    checkout scm
+                    sh 'docker info'
+                }
+            }
         }
-      }
     }
-  }
 }
